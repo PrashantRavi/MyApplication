@@ -1,9 +1,11 @@
 package com.example.raviparshant.myapplication;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -12,6 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.raviparshant.myapplication.MyAccessibilityService.Constants;
@@ -19,6 +22,7 @@ import com.example.raviparshant.myapplication.MyAccessibilityService.Constants;
 public class ToastOrNotificationTestActivity extends Activity {
 
     private static final String TAG = "ToastOrNotificationTestActivity";
+    EditText ed1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +32,21 @@ public class ToastOrNotificationTestActivity extends Activity {
         mIntentFilter.addAction(Constants.ACTION_CATCH_TOAST);
         registerReceiver(toastOrNotificationCatcherReceiver, mIntentFilter);
          //Log.v(TAG, "r.");
+       /* ed1=(EditText)findViewById(R.id.editText);
+        String str=ed1.getText().toString();
+        String arr[]=str.split(",");*/
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(toastOrNotificationCatcherReceiver);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
     }
 
 
@@ -69,4 +82,6 @@ public class ToastOrNotificationTestActivity extends Activity {
             Log.v(TAG, "intent.getStringExtra(Constants.EXTRA_MESSAGE) :: " + intent.getStringExtra(Constants.EXTRA_MESSAGE));*/
         }
     };
+
+
 }

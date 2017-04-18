@@ -103,6 +103,7 @@ public class MyAccessibilityService extends AccessibilityService {
                         mIntent.putExtra(Constants.EXTRA_PACKAGE, sourcePackageName);
                         mIntent.putExtra(Constants.EXTRA_MESSAGE, toastMsg);
                         MyAccessibilityService.this.getApplicationContext().sendBroadcast(mIntent);
+                        Main2Activity.launchPopup(getApplicationContext(), toastMsg);
                     } catch (Exception e) {
                         Log.v(TAG, e.toString());
                     }
@@ -131,8 +132,8 @@ public class MyAccessibilityService extends AccessibilityService {
         // If you only want this service to work with specific applications, set their
         // package names here.  Otherwise, when the service is activated, it will listen
         // to events from all applications.
-        info.packageNames = new String[]
-       {"com.oyo.consumer"};
+        info.packageNames = new String[] {};
+      // {"com.traveltriangle.traveller"};
 
         // Set the type of feedback your service will provide.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
